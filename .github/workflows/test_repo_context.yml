@@ -14,9 +14,7 @@ jobs:
         run: |
           git --no-pager log --pretty=oneline
           echo "Tags:"
-          git rev-list --tags --max-count=1
-          echo "Descriptions:"
-          git describe --tags $(git rev-list --tags --max-count=1)
+          git rev-list --tags
 
       - name: Print directory structure of target
         id: find_zip
