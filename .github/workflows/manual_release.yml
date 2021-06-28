@@ -2,6 +2,15 @@ name: Manual Release
 
 on:
   workflow_dispatch:
+    inputs:
+      tag_name:
+        description: "Tag name"
+        required: true
+        default: ${{ steps.get_version.outputs.VERSION }}
+      release_name:
+        description: "Tag name"
+        default: Release ${{ steps.get_version.outputs.VERSION }}
+        required: true
 
 jobs:
   build:
@@ -18,18 +27,11 @@ jobs:
           skip-perform: true
           access-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Get the last tag name to set as version
-        id: get_version
-        run: echo ::set-output name=VERSION::$(git describe --tags $(git rev-list --tags --max-count=1))
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ steps.get_version.outputs.VERSION }}
-          release_name: Release ${{ steps.get_version.outputs.VERSION }}
 
       - name: Get the app version from the last tag name
         id: get_app_version
