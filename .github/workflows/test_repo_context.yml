@@ -1,0 +1,23 @@
+name: Manual Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Print the git log and tag name
+        id: print
+        run: |
+          git --no-pager log --pretty=oneline
+          echo "Tags:"
+          git rev-list --tags --max-count=1
+          echo "Descriptions:"
+          git describe --tags $(git rev-list --tags --max-count=1)
+
+      - name: Print directory structure of target
+        id: find_zip
+        run: find target
