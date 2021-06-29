@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.orange.lo.sample</groupId>
     <artifactId>mqtt2dis</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>Mqtt2FlexibleEngineDIS</name>
     <description>Connector between Live Object and Data Ingestion Service</description>
 
@@ -138,7 +138,7 @@
         <url>https://github.com/jdys-at-orange/Flexible_Engine_DIS_LOconnector_to_install_on_FE</url>
         <connection>scm:git:${project.scm.url}</connection>
         <developerConnection>scm:git:${project.scm.url}</developerConnection>
-        <tag>v0.0.1</tag>
+        <tag>v1.0</tag>
     </scm>
     <profiles>
         <profile>
